@@ -5,6 +5,7 @@ import {ApolloProvider} from 'react-apollo';
 //components
 import QuestionList from '/Users/jessicalee/studyingTool-reactGraphQLmLab/frontend/src/components/QuestionList.js';
 import AddQuestion from '/Users/jessicalee/studyingTool-reactGraphQLmLab/frontend/src/components/AddQuestion.js';
+import AddCategory from '/Users/jessicalee/studyingTool-reactGraphQLmLab/frontend/src/components/AddCategory.js';
 
 // apollo client setup
 const client = new ApolloClient({
@@ -17,6 +18,7 @@ class App extends Component {
         return (
             <ApolloProvider client={client}>
                 <div>
+                    <AddCategory />
                     <AddQuestion />
                     <QuestionList/>
                 </div>

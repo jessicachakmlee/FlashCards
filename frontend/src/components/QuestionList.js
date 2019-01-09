@@ -1,13 +1,17 @@
 import React, {Component} from "react";
 import styled from 'styled-components';
 import {graphql} from 'react-apollo';
-import {getQuestionsQuery, deleteQuestionMutation} from "../queries/queries";
+import {
+    getQuestionsQuery, deleteQuestionMutation, getCategoriesQuery,
+    addCategoryToQuestionMutation
+} from "../queries/queries";
 import {compose} from "react-apollo/index";
 
 const QuestionBank = styled.div`
     display: flex;
     overflow: auto;
     flex-direction: column;
+    margin: 0 10px;
 `;
 
 const QuestionDisplayed = styled.div`
@@ -18,7 +22,7 @@ const QuestionDisplayed = styled.div`
 
 const QuestionShowSpan = styled.span`
     align-self: flex-end;
-    width: 75%;
+    width: 65%;
     white-space: pre-wrap;
     word-break: break-word;
 `;
@@ -42,16 +46,38 @@ const DeleteQuestionButton = styled.button`
 `;
 
 
+
+
 class QuestionList extends Component {
+
+    displayCategories = () => {
+        let data = this.props.getCategoriesQuery;
+        if (data.loading) {
+            return <option disabled>Loading Categories</option>
+        } else {
+            return data.categories.map(category =>
+                <option key={category.id} value={category.id}>{category.name}</option>
+            )
+        }
+    };
+
+
     displayQuestions = () => {
         let data = this.props.getQuestionsQuery;
+        console.log(data.questions);
         if (data.loading) {
             return <div>Loading Questions...</div>;
         } else {
             return data.questions.map(question =>
                 <QuestionDisplayed key={question.id}>
                     <QuestionShowSpan value={question.id}>{question.name}</QuestionShowSpan>
-                    <DeleteQuestionButton onClick={e => this.deleteQuestion(e, question.id)}> Delete</DeleteQuestionButton>
+                    <div> Category:
+                        <select value={question.category.id} onChange={e => this.handleCategoryChange(e, question.id)}>
+                            {this.displayCategories()}
+                        </select>
+                    </div>
+                    <DeleteQuestionButton
+                        onClick={e => this.deleteQuestion(e, question.id)}> Delete</DeleteQuestionButton>
                 </QuestionDisplayed>
             )
         }
@@ -62,9 +88,19 @@ class QuestionList extends Component {
             variables: {
                 id: questionId
             },
-            refetchQueries:[{query: getQuestionsQuery}]
+            refetchQueries: [{query: getQuestionsQuery}]
         });
         event.preventDefault();
+    };
+
+    handleCategoryChange = (event, questionId) => {
+        this.props.addCategoryToQuestionMutation({
+            variables: {
+                questionId: questionId,
+                categoryId: event.target.value
+            },
+            refetchQueries: [{query: getQuestionsQuery}, {query: getCategoriesQuery}]
+        });
     };
 
 
@@ -78,6 +114,8 @@ class QuestionList extends Component {
 }
 
 export default compose(
-    graphql(getQuestionsQuery, {name:"getQuestionsQuery"}),
-    graphql(deleteQuestionMutation, {name: "deleteQuestionMutation"})
+    graphql(getQuestionsQuery, {name: "getQuestionsQuery"}),
+    graphql(deleteQuestionMutation, {name: "deleteQuestionMutation"}),
+    graphql(getCategoriesQuery, {name: "getCategoriesQuery"}),
+    graphql(addCategoryToQuestionMutation, {name: "addCategoryToQuestionMutation"})
 )(QuestionList);

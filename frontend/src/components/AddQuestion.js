@@ -12,7 +12,7 @@ const QuestionSubmissionDiv = styled.div`
 const QuestionSubmissionTitle = styled.h2`
     text-align: center;
     border: 1px solid;
-    margin-top: 57px;
+    margin: 57px 10px 10px 10px;
     background: darkseagreen;
 `;
 
@@ -24,7 +24,7 @@ const QSubmissionForm = styled.form`
     border: 3px dashed darkseagreen;
     padding: 10px;
     align-self: center;
-    margin-bottom: 20px;
+    margin: 0 10px 20px 10px;
 `;
 
 const QAlabel = styled.label`
@@ -65,17 +65,16 @@ class AddQuestion extends Component {
     constructor(props){
         super(props);
         this.state = {
-            TextAreaQuestion: '',
-            TextAreaAnswer: '',
-            categoryId: ''
+            TextAreaQuestion: "",
+            TextAreaAnswer: "",
+            categoryId: "5c303bd63040241a27ff46a7"
         }
     }
 
     displayCategories = () => {
         let data = this.props.getCategoriesQuery;
-        console.log(this.props);
         if(data.loading){
-            return <option>Loading Categories</option>
+            return <option disabled>Loading Categories</option>
         } else {
             return data.categories.map(category =>
                 <option key={category.id} value={category.id}>{category.name}</option>
@@ -109,7 +108,7 @@ class AddQuestion extends Component {
                 answer: this.state.TextAreaAnswer,
                 categoryId: this.state.categoryId
             },
-            refetchQueries:[{query: getQuestionsQuery}]
+            refetchQueries:[{query: getQuestionsQuery}, {query: getCategoriesQuery}]
         });
         event.preventDefault();
     };
@@ -137,7 +136,7 @@ class AddQuestion extends Component {
                                              name="questionAnswer"
                                              wrap="hard">Answer</QSubmissiontextarea>
                         <QAlabel> Choose Category: </QAlabel>
-                        <QSelect onChange={this.handleChangeCategory}>
+                        <QSelect value={this.state.categoryId} onChange={this.handleChangeCategory}>
                             {this.displayCategories()}
                         </QSelect>
                     </QuestionSubmissionDiv>

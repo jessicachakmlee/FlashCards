@@ -120,6 +120,15 @@ const Mutation = new GraphQLObjectType({
                 return Question.findOneAndRemove({_id: args.id});
 
             }
+        },
+        deleteCategory: {
+            type: CategoryType,
+            args: {
+                id: {type: GraphQLID}
+            },
+            resolve(parent, args){
+                return Category.findOneAndRemove({_id: args.id});
+            }
         }
     }
 });

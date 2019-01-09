@@ -2,9 +2,17 @@ import {gql} from 'apollo-boost';
 
 const getCategoriesQuery = gql`
 {
-  categories {
+  categories{
     name
     id
+    questions {
+      id
+      name
+      category{
+      name
+      id
+      }
+    }
   }
 }
 `;
@@ -13,8 +21,11 @@ const getQuestionsQuery = gql`
 {
   questions {
     name
-    answer
     id
+    category{
+    name
+    id
+    }
   }
 }
 `;
@@ -36,4 +47,30 @@ mutation ($id: ID!) {
 }
 `;
 
-export{getQuestionsQuery, getCategoriesQuery, addQuestionMutation, deleteQuestionMutation};
+const addCategoryMutation = gql`
+mutation ($name: String!) {
+    addCategory(name: $name){
+    name
+    id}
+    }
+`;
+
+const deleteCategoryMutation = gql`
+mutation ($id: ID!) {
+    deleteCategory(id: $id){
+    name
+    }
+}
+`;
+
+
+const addCategoryToQuestionMutation = gql`
+mutation ($questionId: ID!, $categoryId: ID!) {
+    addCategoryToQuestion(id: $questionId, categoryId: $categoryId) {
+    name
+    id
+    }
+}
+`;
+
+export{getQuestionsQuery, getCategoriesQuery, addQuestionMutation, deleteQuestionMutation, addCategoryMutation, deleteCategoryMutation, addCategoryToQuestionMutation};
