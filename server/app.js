@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 
 // connect to mLab
-mongoose.connect('mongodb://Jessica:testing123@ds145304.mlab.com:45304/graphql-studyingtool', {useNewUrlParser: true});
+mongoose.connect('mongodb://Jessica:testing123@ds145304.mlab.com:45304/graphql-studyingtool', {useNewUrlParser: true}).catch(e => console.log(e));
 mongoose.connection.once('open', () => {
         console.log('connected to database');
 });

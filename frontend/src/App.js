@@ -6,7 +6,7 @@ import {ApolloProvider} from 'react-apollo';
 import QuestionList from '/Users/jessicalee/studyingTool-reactGraphQLmLab/frontend/src/components/QuestionList.js';
 import AddQuestion from '/Users/jessicalee/studyingTool-reactGraphQLmLab/frontend/src/components/AddQuestion.js';
 import AddCategory from '/Users/jessicalee/studyingTool-reactGraphQLmLab/frontend/src/components/AddCategory.js';
-
+import QuestionAnswerGenerator from '/Users/jessicalee/studyingTool-reactGraphQLmLab/frontend/src/components/QuestionAnswerGenerator.js';
 // apollo client setup
 const client = new ApolloClient({
     uri: 'http://localhost:4000/graphql'
@@ -18,6 +18,7 @@ class App extends Component {
         return (
             <ApolloProvider client={client}>
                 <div>
+                    <QuestionAnswerGenerator/>
                     <AddCategory />
                     <AddQuestion />
                     <QuestionList/>

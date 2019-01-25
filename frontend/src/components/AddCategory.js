@@ -85,7 +85,6 @@ class AddCategory extends Component {
         if (data.loading) {
             return <div>Loading Categories...</div>;
         } else {
-            console.log(data.categories.map(category => category.questions));
             return data.categories.map(category =>
                 <QuestionDisplayed key={category.id}>
                     <QuestionShowSpan value={category.id}>{category.name}</QuestionShowSpan>

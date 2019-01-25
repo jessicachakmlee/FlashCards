@@ -64,7 +64,6 @@ class QuestionList extends Component {
 
     displayQuestions = () => {
         let data = this.props.getQuestionsQuery;
-        console.log(data.questions);
         if (data.loading) {
             return <div>Loading Questions...</div>;
         } else {

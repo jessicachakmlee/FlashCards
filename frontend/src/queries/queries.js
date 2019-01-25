@@ -8,6 +8,7 @@ const getCategoriesQuery = gql`
     questions {
       id
       name
+      answer
       category{
       name
       id
@@ -22,6 +23,7 @@ const getQuestionsQuery = gql`
   questions {
     name
     id
+    answer
     category{
     name
     id
