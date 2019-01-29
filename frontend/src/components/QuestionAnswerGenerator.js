@@ -13,15 +13,15 @@ const QuestionAnswerDiv = styled.div`
 `;
 
 const QATitle = styled.h2`
-    margin-right: 10px;
+    margin: 5px 10px;
     text-align: center;
-    border: 1px solid;
+    color: cornflowerblue;
 `;
 
 const QAContent = styled.div`
     display: flex;
     flex-direction: column;
-    margin-right: 10px;
+    margin: 0px 10px;
 `;
 
 const QuestionShow = styled.div`
@@ -141,10 +141,7 @@ class QuestionAnswerGenerator extends Component {
                 questions: questionsLoaded()
             })
         }
-
     }
-
-
 
     randomNumber = () => {
         return Math.floor(Math.random() * this.state.questions.length);
@@ -162,7 +159,6 @@ class QuestionAnswerGenerator extends Component {
             return {AnswerShown: !prevState.AnswerShown}
         });
     };
-
 
     render() {
         const ShownQuestion = this.state.questions[this.state.randomNumber] ? this.state.questions[this.state.randomNumber].name : 'Loading Question...';

@@ -1,14 +1,61 @@
 import React, {Component} from "react";
 import styled from 'styled-components';
 import {graphql, compose} from 'react-apollo';
-import {addCategoryMutation, getCategoriesQuery, deleteCategoryMutation, addCategoryToQuestionMutation, getQuestionsQuery} from "../queries/queries";
+import {
+    addCategoryMutation,
+    getCategoriesQuery,
+    deleteCategoryMutation,
+    addCategoryToQuestionMutation,
+    getQuestionsQuery
+} from "../queries/queries";
+
+const OverlayWrapper = styled.div`
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2001;
+    width: 100%;
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 60px 20px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+`;
+
+const OverlaySpan = styled.span`
+    margin: 0px auto;
+    
+    :before {
+    content:'x';
+    font-size: 22px;
+    font-weight: 800;
+    color: white;
+    position: relative;
+    top: 0;
+    right: -569px;
+    }
+`;
+
+const ContentDiv = styled.div`
+    max-width: calc(90%);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 60px 20px;
+    transform: scale(1);
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 50px);
+    background: white;
+    margin: 0px auto;
+    padding: 40px;
+    overflow: auto;
+`;
 
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     border: 2px dashed lightblue;
-    margin: 0 0 0 10px;
-    width: 50%;
+    margin: 10px auto;
+    width: 500px;
 `;
 
 const CategoriesShow = styled.div`
@@ -72,7 +119,7 @@ const DeleteQuestionButton = styled.button`
 
 
 class AddCategory extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             categoryName: '',
@@ -89,7 +136,8 @@ class AddCategory extends Component {
                 <QuestionDisplayed key={category.id}>
                     <QuestionShowSpan value={category.id}>{category.name}</QuestionShowSpan>
                     {category.id !== "5c303bd63040241a27ff46a7" ?
-                    <DeleteQuestionButton onClick={e => this.deleteCategory(e, category.id, category.questions)}> Delete</DeleteQuestionButton> : null}
+                        <DeleteQuestionButton
+                            onClick={e => this.deleteCategory(e, category.id, category.questions)}> Delete</DeleteQuestionButton> : null}
                 </QuestionDisplayed>
             )
         }
@@ -103,18 +151,17 @@ class AddCategory extends Component {
                     questionId: question.id,
                     categoryId: "5c303bd63040241a27ff46a7"
                 },
-                refetchQueries:[{query: getQuestionsQuery}, {query: getCategoriesQuery}]
+                refetchQueries: [{query: getQuestionsQuery}, {query: getCategoriesQuery}]
             });
         });
         this.props.deleteCategoryMutation({
             variables: {
                 id: categoryId
             },
-            refetchQueries:[{query: getCategoriesQuery}]
+            refetchQueries: [{query: getCategoriesQuery}]
         });
         event.preventDefault();
     };
-
 
 
     handleCategoryName = (event) => {
@@ -129,7 +176,7 @@ class AddCategory extends Component {
             variables: {
                 name: this.state.categoryName,
             },
-            refetchQueries:[{query: getCategoriesQuery}]
+            refetchQueries: [{query: getCategoriesQuery}]
         });
         event.preventDefault();
     };
@@ -137,20 +184,26 @@ class AddCategory extends Component {
 
     render() {
         return (
-            <Wrapper>
-                <Title>Add a Category</Title>
-                <form id={'add-category'} onSubmit={this.handleSubmit}>
-                    <CategoriesInput className={'field'}>
-                        <label>Enter Category:</label>
-                        <input type={'text'} onChange={this.handleCategoryName}/>
-                    </CategoriesInput>
-                    <button>Submit</button>
-                </form>
-                <CategoriesShow>
-                    <CategoriesLabel>Current Catgeories</CategoriesLabel>
-                    {this.displayCategories()}
-                </CategoriesShow>
-            </Wrapper>
+            <OverlayWrapper onClick={() => this.props.history.goBack()}>
+                <OverlaySpan>
+                    <ContentDiv onClick={e => e.stopPropagation()}>
+                        <Wrapper>
+                            <Title>Add a Category</Title>
+                            <form id={'add-category'} onSubmit={this.handleSubmit}>
+                                <CategoriesInput className={'field'}>
+                                    <label>Enter Category:</label>
+                                    <input type={'text'} onChange={this.handleCategoryName}/>
+                                </CategoriesInput>
+                                <button>Submit</button>
+                            </form>
+                            <CategoriesShow>
+                                <CategoriesLabel>Current Catgeories</CategoriesLabel>
+                                {this.displayCategories()}
+                            </CategoriesShow>
+                        </Wrapper>
+                    </ContentDiv>
+                </OverlaySpan>
+            </OverlayWrapper>
         )
     }
 }

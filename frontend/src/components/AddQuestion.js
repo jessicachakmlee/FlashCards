@@ -4,6 +4,47 @@ import {graphql, compose} from 'react-apollo';
 import {getCategoriesQuery, addQuestionMutation, getQuestionsQuery} from "../queries/queries";
 
 
+const OverlayWrapper = styled.div`
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2001;
+    width: 100%;
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 60px 20px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+`;
+
+const OverlaySpan = styled.span`
+    margin: 0px auto;
+    
+    :before {
+    content:'x';
+    font-size: 22px;
+    font-weight: 800;
+    color: white;
+    position: relative;
+    top: 0;
+    right: -612px;
+    }
+`;
+
+const ContentDiv = styled.div`
+    max-width: calc(90%);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 60px 20px;
+    transform: scale(1);
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 50px);
+    background: white;
+    margin: 0px auto;
+    padding: 40px;
+    overflow: auto;
+`;
+
 const QuestionSubmissionDiv = styled.div`
     display: flex;
     flex-direction: column;
@@ -12,7 +53,6 @@ const QuestionSubmissionDiv = styled.div`
 const QuestionSubmissionTitle = styled.h2`
     text-align: center;
     border: 1px solid;
-    margin: 57px 10px 10px 10px;
     background: darkseagreen;
 `;
 
@@ -25,6 +65,7 @@ const QSubmissionForm = styled.form`
     padding: 10px;
     align-self: center;
     margin: 0 10px 20px 10px;
+    width: 500px;
 `;
 
 const QAlabel = styled.label`
@@ -62,7 +103,7 @@ const StyledInput = styled.input`
 `;
 
 class AddQuestion extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             TextAreaQuestion: "",
@@ -73,7 +114,7 @@ class AddQuestion extends Component {
 
     displayCategories = () => {
         let data = this.props.getCategoriesQuery;
-        if(data.loading){
+        if (data.loading) {
             return <option disabled>Loading Categories</option>
         } else {
             return data.categories.map(category =>
@@ -108,43 +149,48 @@ class AddQuestion extends Component {
                 answer: this.state.TextAreaAnswer,
                 categoryId: this.state.categoryId
             },
-            refetchQueries:[{query: getQuestionsQuery}, {query: getCategoriesQuery}]
+            refetchQueries: [{query: getQuestionsQuery}, {query: getCategoriesQuery}]
         });
         event.preventDefault();
+        this.props.history.goBack();
     };
 
     render() {
         return (
-            <div>
-                <QuestionSubmissionTitle>Question Submission</QuestionSubmissionTitle>
-                <QSubmissionForm onSubmit={this.handleSubmit}>
-                    <QuestionSubmissionDiv>
-                        <QAlabel> Enter Question: </QAlabel>
-                        <QSubmissiontextarea value={this.state.TextAreaQuestion}
-                                             onChange={this.handleChangeQuestion}
-                                             rows="4"
-                                             cols="50"
-                                             id="questionText"
-                                             name="questionText"
-                                             wrap="hard">Question</QSubmissiontextarea>
-                        <QAlabel> Enter Answer: </QAlabel>
-                        <QSubmissiontextarea value={this.state.TextAreaAnswer}
-                                             onChange={this.handleChangeAnswer}
-                                             rows="4"
-                                             cols="50"
-                                             id="questionAnswer"
-                                             name="questionAnswer"
-                                             wrap="hard">Answer</QSubmissiontextarea>
-                        <QAlabel> Choose Category: </QAlabel>
-                        <QSelect value={this.state.categoryId} onChange={this.handleChangeCategory}>
-                            {this.displayCategories()}
-                        </QSelect>
-                    </QuestionSubmissionDiv>
-                    <InputDiv>
-                        <StyledInput type="submit"/>
-                    </InputDiv>
-                </QSubmissionForm>
-            </div>
+            <OverlayWrapper onClick={() => this.props.history.goBack()}>
+                <OverlaySpan>
+                    <ContentDiv onClick={e => e.stopPropagation()}>
+                        <QuestionSubmissionTitle>Question Submission</QuestionSubmissionTitle>
+                        <QSubmissionForm onSubmit={this.handleSubmit}>
+                            <QuestionSubmissionDiv>
+                                <QAlabel> Enter Question: </QAlabel>
+                                <QSubmissiontextarea value={this.state.TextAreaQuestion}
+                                                     onChange={this.handleChangeQuestion}
+                                                     rows="4"
+                                                     cols="50"
+                                                     id="questionText"
+                                                     name="questionText"
+                                                     wrap="hard">Question</QSubmissiontextarea>
+                                <QAlabel> Enter Answer: </QAlabel>
+                                <QSubmissiontextarea value={this.state.TextAreaAnswer}
+                                                     onChange={this.handleChangeAnswer}
+                                                     rows="4"
+                                                     cols="50"
+                                                     id="questionAnswer"
+                                                     name="questionAnswer"
+                                                     wrap="hard">Answer</QSubmissiontextarea>
+                                <QAlabel> Choose Category: </QAlabel>
+                                <QSelect value={this.state.categoryId} onChange={this.handleChangeCategory}>
+                                    {this.displayCategories()}
+                                </QSelect>
+                            </QuestionSubmissionDiv>
+                            <InputDiv>
+                                <StyledInput type="submit"/>
+                            </InputDiv>
+                        </QSubmissionForm>
+                    </ContentDiv>
+                </OverlaySpan>
+            </OverlayWrapper>
         )
     }
 }
