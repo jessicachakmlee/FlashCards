@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import styled from 'styled-components';
 import {
-    getCategoriesQuery
+    getCategoriesQuery, getQuestionsQuery, addCategoryMutation, deleteCategoryMutation, addCategoryToQuestionMutation
 } from "../queries/queries";
 import {compose, graphql} from "react-apollo/index";
 
@@ -75,6 +75,27 @@ class CategoriesList extends Component {
             )
         }
     };
+
+    deleteCategory = (event, categoryId, questions) => {
+
+        questions.map(question => {
+            this.props.addCategoryToQuestionMutation({
+                variables: {
+                    questionId: question.id,
+                    categoryId: "5c303bd63040241a27ff46a7"
+                },
+                refetchQueries: [{query: getQuestionsQuery}, {query: getCategoriesQuery}]
+            });
+        });
+        this.props.deleteCategoryMutation({
+            variables: {
+                id: categoryId
+            },
+            refetchQueries: [{query: getCategoriesQuery}]
+        });
+        event.preventDefault();
+    };
+
     render() {
         return(
             <CategoriesShow>
@@ -85,5 +106,9 @@ class CategoriesList extends Component {
 }
 
 export default compose(
-    graphql(getCategoriesQuery, {name: "getCategoriesQuery"})
+    graphql(getCategoriesQuery, {name: "getCategoriesQuery"}),
+    graphql(addCategoryMutation, {name: "addCategoryMutation"}),
+    graphql(deleteCategoryMutation, {name: "deleteCategoryMutation"}),
+    graphql(addCategoryToQuestionMutation, {name: "addCategoryToQuestionMutation"}),
+    graphql(getQuestionsQuery, {name: "getQuestionsQuery"})
 )(CategoriesList);

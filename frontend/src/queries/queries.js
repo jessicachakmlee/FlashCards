@@ -32,6 +32,21 @@ const getQuestionsQuery = gql`
 }
 `;
 
+const getCategoryQuestionsQuery = gql`
+query ($id: ID) {
+   category (id: $id){
+   id
+   name
+   questions {
+      id
+      name
+      answer
+    }
+  }
+}
+`;
+
+
 const addQuestionMutation = gql`
 mutation ($name: String!, $answer:String!, $categoryId: ID!){
     addQuestion (question: $name, answer: $answer, categoryId: $categoryId){
@@ -75,4 +90,5 @@ mutation ($questionId: ID!, $categoryId: ID!) {
 }
 `;
 
-export{getQuestionsQuery, getCategoriesQuery, addQuestionMutation, deleteQuestionMutation, addCategoryMutation, deleteCategoryMutation, addCategoryToQuestionMutation};
+export{getQuestionsQuery, getCategoriesQuery, addQuestionMutation, deleteQuestionMutation, addCategoryMutation,
+    deleteCategoryMutation, addCategoryToQuestionMutation, getCategoryQuestionsQuery};

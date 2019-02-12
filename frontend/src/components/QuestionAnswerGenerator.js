@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import styled from 'styled-components';
 import {graphql, compose} from 'react-apollo';
-import {getQuestionsQuery} from "../queries/queries";
+import { withApollo } from 'react-apollo'
+import {getCategoriesQuery, getQuestionsQuery, getCategoryQuestionsQuery} from "../queries/queries";
 
 const QuestionAnswerContainer = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 `;
 
 const QuestionAnswerDiv = styled.div`
@@ -110,38 +111,67 @@ const ShowAnswerButton = styled.button`
     }
 `;
 
+const QSelect = styled.select`
+    width: 25%;
+    height: auto;
+    margin: 10px 0;
+    align-self:center
+`;
+
+const QuestionAnswerWrapper = styled.div`
+    display: flex;
+`;
+
 class QuestionAnswerGenerator extends Component {
     constructor(props) {
-       super(props);
+        super(props);
 
-       const questionsLoaded = () => {
-           let data = this.props.getQuestionsQuery;
-           if (data.loading) {
-               return [];
-           } else {
-               return data.questions}};
+        const questionsLoaded = () => {
+            let data = this.props.getQuestionsQuery;
+            if (data.loading) {
+                return [];
+            } else {
+                return data.questions
+            }
+        };
 
         this.state = {
+            categorySelected: "all",
             questions: questionsLoaded(),
             AnswerShown: false,
             randomNumber: 0,
         }
     };
 
+
     componentDidUpdate(prevProps, prevState) {
-        const questionsLoaded = () => {
+        const allquestionsLoaded = () => {
             let data = this.props.getQuestionsQuery;
             if (data.loading) {
                 return [];
             } else {
-                return data.questions}};
+                return data.questions
+            }
+        };
 
-        if (prevProps.getQuestionsQuery.loading !== this.props.getQuestionsQuery.loading){
+        if (prevProps.getQuestionsQuery.loading !== this.props.getQuestionsQuery.loading) {
             this.setState({
-                questions: questionsLoaded()
+                questions: allquestionsLoaded()
             })
         }
     }
+
+
+    displayCategories = () => {
+        let data = this.props.getCategoriesQuery;
+        if (data.loading) {
+            return <option disabled>Loading Categories</option>
+        } else {
+            return data.categories.map(category =>
+                <option key={category.id} value={category.id}>{category.name}</option>
+            )
+        }
+    };
 
     randomNumber = () => {
         return Math.floor(Math.random() * this.state.questions.length);
@@ -160,37 +190,79 @@ class QuestionAnswerGenerator extends Component {
         });
     };
 
+    handleChangeCategory = async(event) => {
+        event.persist();
+        const allQuestionsLoaded = () => {
+            let data = this.props.getQuestionsQuery;
+            if (data.loading) {
+                return [];
+            } else {
+                return data.questions
+            }
+        };
+
+        if (event.target.value === 'all') {
+            this.setState({
+                    questions: allQuestionsLoaded(),
+                    categorySelected: event.target.value
+            })
+        } else {
+            const data = await this.props.client.query({
+                query: getCategoryQuestionsQuery,
+                variables: {id: event.target.value}});
+
+            const Categoryquestions = data.data.category.questions;
+
+            this.setState((prevState) => {
+                return {
+                    questions: Categoryquestions,
+                    categorySelected: event.target.value
+                }
+            })
+        }
+    };
+
     render() {
-        const ShownQuestion = this.state.questions[this.state.randomNumber] ? this.state.questions[this.state.randomNumber].name : 'Loading Question...';
+        const ShownQuestion = this.state.categorySelected !== 'all' && this.state.questions.length === 0 ? 'No Questions in this Category, please select another category.' : (this.state.questions[this.state.randomNumber] ? this.state.questions[this.state.randomNumber].name : 'Loading Question...');
         const ShownAnswer = this.state.questions[this.state.randomNumber] ? this.state.questions[this.state.randomNumber].answer : 'Loading Answer...';
         const ShowAnswerButtonToggle = this.state.AnswerShown ? 'Hide Answer' : 'Show Answer';
         return (
             <QuestionAnswerContainer>
-                <QuestionAnswerDiv>
-                    <QATitle>Questions</QATitle>
-                    <QAContent>
-                        <QuestionShow>{ShownQuestion}</QuestionShow>
-                        <NextQuestionButton onClick={this.randomize}>
-                            Next Question
-                        </NextQuestionButton>
-                    </QAContent>
-                </QuestionAnswerDiv>
-                <QuestionAnswerDiv>
-                    <QATitle>Answers</QATitle>
-                    <QAContent>
-                        <AnswerTextDiv>
-                            <AnswerText show={this.state.AnswerShown}>{ShownAnswer}</AnswerText>
-                        </AnswerTextDiv>
-                        <ShowAnswerButton show={this.state.AnswerShown}
-                                          onClick={this.showAnswer}>{ShowAnswerButtonToggle}
-                        </ShowAnswerButton>
-                    </QAContent>
-                </QuestionAnswerDiv>
+                <QATitle>Category</QATitle>
+                <QSelect value={this.state.categoryId} onChange={e => this.handleChangeCategory(e)}>
+                    <option key={'all-categories'} value={'all'}>All</option>
+                    {this.displayCategories()}
+                </QSelect>
+                <QuestionAnswerWrapper>
+                    <QuestionAnswerDiv>
+                        <QATitle>Questions</QATitle>
+                        <QAContent>
+                            <QuestionShow>{ShownQuestion}</QuestionShow>
+                            <NextQuestionButton onClick={this.randomize}>
+                                Next Question
+                            </NextQuestionButton>
+                        </QAContent>
+                    </QuestionAnswerDiv>
+                    <QuestionAnswerDiv>
+                        <QATitle>Answers</QATitle>
+                        <QAContent>
+                            <AnswerTextDiv>
+                                <AnswerText show={this.state.AnswerShown}>{ShownAnswer}</AnswerText>
+                            </AnswerTextDiv>
+                            <ShowAnswerButton show={this.state.AnswerShown}
+                                              onClick={this.showAnswer}>{ShowAnswerButtonToggle}
+                            </ShowAnswerButton>
+                        </QAContent>
+                    </QuestionAnswerDiv>
+                </QuestionAnswerWrapper>
             </QuestionAnswerContainer>
         )
     }
 }
 
 export default compose(
-    graphql(getQuestionsQuery, {name: "getQuestionsQuery"})
+    withApollo,
+    graphql(getQuestionsQuery, {name: "getQuestionsQuery"}),
+    graphql(getCategoriesQuery, {name: "getCategoriesQuery"}),
+    graphql(getCategoryQuestionsQuery, {name: "getCategoryQuestionsQuery"})
 )(QuestionAnswerGenerator);

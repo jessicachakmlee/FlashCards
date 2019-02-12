@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {graphql} from 'react-apollo';
 import {
     getQuestionsQuery, deleteQuestionMutation, getCategoriesQuery,
-    addCategoryToQuestionMutation
+    addCategoryToQuestionMutation, getCategoryQuestionsQuery
 } from "../queries/queries";
 import {compose} from "react-apollo/index";
 
@@ -98,7 +98,7 @@ class QuestionList extends Component {
                 questionId: questionId,
                 categoryId: event.target.value
             },
-            refetchQueries: [{query: getQuestionsQuery}, {query: getCategoriesQuery}]
+            refetchQueries: [{query: getQuestionsQuery}, {query: getCategoriesQuery}, {query: getCategoryQuestionsQuery }]
         });
     };
 
@@ -116,5 +116,6 @@ export default compose(
     graphql(getQuestionsQuery, {name: "getQuestionsQuery"}),
     graphql(deleteQuestionMutation, {name: "deleteQuestionMutation"}),
     graphql(getCategoriesQuery, {name: "getCategoriesQuery"}),
-    graphql(addCategoryToQuestionMutation, {name: "addCategoryToQuestionMutation"})
+    graphql(addCategoryToQuestionMutation, {name: "addCategoryToQuestionMutation"}),
+    graphql(getCategoryQuestionsQuery, {name: "getCategoryQuestionsQuery"})
 )(QuestionList);

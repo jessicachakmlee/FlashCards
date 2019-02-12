@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import ApolloClient from 'apollo-boost';
-import {ApolloProvider} from 'react-apollo';
 import styled from 'styled-components';
 import {Link, Route, Switch} from "react-router-dom";
 
