@@ -197,7 +197,7 @@ class AddCategory extends Component {
                                 <button>Submit</button>
                             </form>
                             <CategoriesShow>
-                                <CategoriesLabel>Current Catgeories</CategoriesLabel>
+                                <CategoriesLabel>Current Categories</CategoriesLabel>
                                 {this.displayCategories()}
                             </CategoriesShow>
                         </Wrapper>
