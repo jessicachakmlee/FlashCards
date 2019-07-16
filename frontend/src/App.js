@@ -4,10 +4,11 @@ import {Link, Route, Switch} from "react-router-dom";
 
 
 //components
-import QuestionList from '/Users/jessicalee/studyingTool-reactGraphQLmLab/frontend/src/components/QuestionList.js';
-import AddQuestion from '/Users/jessicalee/studyingTool-reactGraphQLmLab/frontend/src/components/AddQuestion.js';
-import AddCategory from '/Users/jessicalee/studyingTool-reactGraphQLmLab/frontend/src/components/AddCategory.js';
-import QuestionAnswerGenerator from '/Users/jessicalee/studyingTool-reactGraphQLmLab/frontend/src/components/QuestionAnswerGenerator.js';
+import QuestionList from './components/QuestionList';
+
+import AddQuestion from './components/AddQuestion.js';
+import AddCategory from './components/AddCategory.js';
+import QuestionAnswerGenerator from './components/QuestionAnswerGenerator.js';
 import CategoriesList from "./components/CategoriesList";
 
 const Banner = styled.div`
