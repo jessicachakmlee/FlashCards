@@ -8,9 +8,8 @@ describe('Saving a question', function() {
             name: "SampleQuestion1",
             answer: "Answer1"
         });
-        q1.save().then(() => {
-            assert(q1.isNew === false);
-        });
+        q1.save();
+        assert(q1.isNew === false);
         done();
     });
 });
