@@ -14,7 +14,7 @@ app.use(cors());
 
 const MongoClient = require('mongodb').MongoClient;
 
-mongoose.connect("mongodb+srv://username:password@cluster0.g5q0i.mongodb.net/username?retryWrites=true&w=majority",
+mongoose.connect("mongodb+srv://jessicachakmlee:yugicarw@cluster0.g5q0i.mongodb.net/jessicachakmlee?retryWrites=true&w=majority",
     {useNewUrlParser: true});
 
 app.use('/graphql', graphqlHTTP({

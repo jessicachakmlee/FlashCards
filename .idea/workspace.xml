@@ -2,112 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe1336ec-dc2c-4a81-9375-3bff724dd537" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/build-info.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/cjs/react.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/umd/react.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/umd/react.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react/umd/react.profiling.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/build-info.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/cjs/scheduler-tracing.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/cjs/scheduler-tracing.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/cjs/scheduler-tracing.profiling.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/cjs/scheduler.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/cjs/scheduler.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/tracing-profiling.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/tracing.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/umd/scheduler-tracing.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/umd/scheduler-tracing.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/umd/scheduler-tracing.profiling.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/umd/scheduler.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/umd/scheduler.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/scheduler/umd/scheduler.profiling.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/.bin/loose-envify" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/js-tokens/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/js-tokens/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/js-tokens/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/js-tokens/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/js-tokens/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/loose-envify/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/loose-envify/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/loose-envify/cli.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/loose-envify/custom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/loose-envify/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/loose-envify/loose-envify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/loose-envify/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/loose-envify/replace.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/prop-types/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/prop-types/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/prop-types/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/prop-types/checkPropTypes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/prop-types/factory.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/prop-types/factoryWithThrowingShims.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/prop-types/factoryWithTypeCheckers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/prop-types/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/prop-types/lib/ReactPropTypesSecret.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/prop-types/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/prop-types/prop-types.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/prop-types/prop-types.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react-is/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react-is/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react-is/build-info.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react-is/cjs/react-is.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react-is/cjs/react-is.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react-is/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react-is/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react-is/umd/react-is.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react-is/umd/react-is.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react/build-info.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react/cjs/react.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react/cjs/react.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react/umd/react.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react/umd/react.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/react/umd/react.profiling.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/build-info.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/cjs/scheduler-tracing.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/cjs/scheduler-tracing.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/cjs/scheduler-tracing.profiling.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/cjs/scheduler.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/cjs/scheduler.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/tracing-profiling.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/tracing.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/umd/scheduler-tracing.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/umd/scheduler-tracing.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/umd/scheduler-tracing.profiling.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/umd/scheduler.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/umd/scheduler.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/node_modules/scheduler/umd/scheduler.profiling.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/AddCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AddCategory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/AddQuestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AddQuestion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/CategoriesList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CategoriesList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/QuestionAnswerGenerator.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/QuestionAnswerGenerator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/QuestionList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/QuestionList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/queries/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/queries/queries.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/category.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/question.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/test/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/test/test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,7 +149,7 @@
       <workItem from="1574403592957" duration="4611000" />
       <workItem from="1608846325954" duration="4504000" />
       <workItem from="1610404452716" duration="4466000" />
-      <workItem from="1610411648231" duration="10693000" />
+      <workItem from="1610411648231" duration="11041000" />
     </task>
     <servers />
   </component>
