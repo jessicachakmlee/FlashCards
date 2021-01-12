@@ -108,7 +108,7 @@ class AddQuestion extends Component {
         this.state = {
             TextAreaQuestion: "",
             TextAreaAnswer: "",
-            categoryId: "5c303bd63040241a27ff46a7"
+            categoryId: null
         }
     }
 
@@ -143,6 +143,7 @@ class AddQuestion extends Component {
 
     handleSubmit = (event) => {
         alert('Question Submitted');
+        this.state.categoryId ?
         this.props.addQuestionMutation({
             variables: {
                 name: this.state.TextAreaQuestion,
@@ -150,6 +151,14 @@ class AddQuestion extends Component {
                 categoryId: this.state.categoryId
             },
             refetchQueries: [{query: getQuestionsQuery}, {query: getCategoriesQuery}]
+        })
+        :
+        this.props.addQuestionMutation({
+                variables: {
+                    name: this.state.TextAreaQuestion,
+                    answer: this.state.TextAreaAnswer,
+                },
+                refetchQueries: [{query: getQuestionsQuery}]
         });
         event.preventDefault();
         this.props.history.goBack();
@@ -181,6 +190,7 @@ class AddQuestion extends Component {
                                                      wrap="hard">Answer</QSubmissiontextarea>
                                 <QAlabel> Choose Category: </QAlabel>
                                 <QSelect value={this.state.categoryId} onChange={this.handleChangeCategory}>
+                                    <option key={"all-categories-add-question"} value={null}>No Category (will appear in All)</option>
                                     {this.displayCategories()}
                                 </QSelect>
                             </QuestionSubmissionDiv>

@@ -8,7 +8,7 @@ import {ApolloProvider} from "react-apollo";
 
 // apollo client setup
 const client = new ApolloClient({
-    uri: 'http://localhost:4000/graphql'
+    uri: '//localhost:4000/graphql',
 });
 
 ReactDOM.render(

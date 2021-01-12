@@ -135,7 +135,7 @@ class AddCategory extends Component {
             return data.categories.map(category =>
                 <QuestionDisplayed key={category.id}>
                     <QuestionShowSpan value={category.id}>{category.name}</QuestionShowSpan>
-                    {category.id !== "5c303bd63040241a27ff46a7" ?
+                    {category.id !== null ?
                         <DeleteQuestionButton
                             onClick={e => this.deleteCategory(e, category.id, category.questions)}> Delete</DeleteQuestionButton> : null}
                 </QuestionDisplayed>
@@ -149,7 +149,7 @@ class AddCategory extends Component {
             this.props.addCategoryToQuestionMutation({
                 variables: {
                     questionId: question.id,
-                    categoryId: "5c303bd63040241a27ff46a7"
+                    categoryId: null
                 },
                 refetchQueries: [{query: getQuestionsQuery}, {query: getCategoriesQuery}]
             });

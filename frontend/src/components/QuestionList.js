@@ -11,7 +11,7 @@ const QuestionBank = styled.div`
     display: flex;
     overflow: auto;
     flex-direction: column;
-    margin: 0 10px;
+    margin: 0 10px; 
 `;
 
 const QuestionDisplayed = styled.div`
@@ -45,9 +45,6 @@ const DeleteQuestionButton = styled.button`
     }
 `;
 
-
-
-
 class QuestionList extends Component {
 
     displayCategories = () => {
@@ -70,10 +67,16 @@ class QuestionList extends Component {
             return data.questions.map(question =>
                 <QuestionDisplayed key={question.id}>
                     <QuestionShowSpan value={question.id}>{question.name}</QuestionShowSpan>
-                    <div> Category:
-                        <select value={question.category.id} onChange={e => this.handleCategoryChange(e, question.id)}>
-                            {this.displayCategories()}
-                        </select>
+                    <div> Category: {
+                        question.category ?
+                            <select value={question.category.id} onChange={e => this.handleCategoryChange(e, question.id)}>
+                                {this.displayCategories()}
+                            </select>
+                            :
+                            <select value={"all-categories"} onChange={e => this.handleCategoryChange(e, question.id)}>
+                                {this.displayCategories()}
+                            </select>
+                    }
                     </div>
                     <DeleteQuestionButton
                         onClick={e => this.deleteQuestion(e, question.id)}> Delete</DeleteQuestionButton>

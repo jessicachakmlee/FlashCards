@@ -131,12 +131,12 @@ class QuestionAnswerGenerator extends Component {
             if (data.loading) {
                 return [];
             } else {
-                return data.questions
+                return data.questions;
             }
         };
 
         this.state = {
-            categorySelected: "all",
+            categorySelected: null,
             questions: questionsLoaded(),
             AnswerShown: false,
             randomNumber: 0,
@@ -223,7 +223,11 @@ class QuestionAnswerGenerator extends Component {
     };
 
     render() {
-        const ShownQuestion = this.state.categorySelected !== 'all' && this.state.questions.length === 0 ? 'No Questions in this Category, please select another category.' : (this.state.questions[this.state.randomNumber] ? this.state.questions[this.state.randomNumber].name : 'Loading Question...');
+        const ShownQuestion = this.state.categorySelected !== null && this.state.questions.length === 0 ?
+                'No Questions in this Category, please select another category.'
+                : (this.state.questions[this.state.randomNumber] ?
+                    this.state.questions[this.state.randomNumber].name
+                    : 'Loading Question...');
         const ShownAnswer = this.state.questions[this.state.randomNumber] ? this.state.questions[this.state.randomNumber].answer : 'Loading Answer...';
         const ShowAnswerButtonToggle = this.state.AnswerShown ? 'Hide Answer' : 'Show Answer';
         return (

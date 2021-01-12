@@ -48,7 +48,7 @@ query ($id: ID) {
 
 
 const addQuestionMutation = gql`
-mutation ($name: String!, $answer:String!, $categoryId: ID!){
+mutation ($name: String!, $answer:String!, $categoryId: ID){
     addQuestion (question: $name, answer: $answer, categoryId: $categoryId){
     name
     answer

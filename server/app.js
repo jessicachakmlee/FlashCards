@@ -11,10 +11,11 @@ const app = express();
 app.use(cors());
 
 // connect to mLab
-mongoose.connect('mongodb://Jessica:testing123@ds145304.mlab.com:45304/graphql-studyingtool', {useNewUrlParser: true}).catch(e => console.log(e));
-mongoose.connection.once('open', () => {
-        console.log('connected to database');
-});
+
+const MongoClient = require('mongodb').MongoClient;
+
+mongoose.connect("mongodb+srv://username:password@cluster0.g5q0i.mongodb.net/username?retryWrites=true&w=majority",
+    {useNewUrlParser: true});
 
 app.use('/graphql', graphqlHTTP({
     schema,
